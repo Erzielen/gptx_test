@@ -1,5 +1,5 @@
 export interface personaInterface {
-id: string;
+id: string | undefined;
 Nombre:          string;
 apellidoPaterno: string;
 apellidoMaterno: string;
