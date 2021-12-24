@@ -1,9 +1,9 @@
 export interface personaInterface {
-id: string | undefined;
-Nombre:          string;
+id?: string ;
+nombre:          string;
 apellidoPaterno: string;
 apellidoMaterno: string;
-Direccion: string;
-Telefono: number;
+direccion: string;
+telefono: number;
 }
 

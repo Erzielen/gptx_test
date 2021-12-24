@@ -1,4 +1,4 @@
-<h1>Persona <small>Nombre de Persona</small></h1>
+<h1> Hola <small>Personita</small></h1>
 
 <hr>
 <div class="row text-right">
@@ -14,74 +14,80 @@
 <!-- -----------------Formulario-------------- -->
 <div class="row animated fadeIn faster">
     <div class="col"> 
-        <form (ngSubmit)="guardar(save)"
-        #save="ngForm">
-                    <div class="form-group">
+        <form  [formGroup]="form" (ngSubmit)="onSubmit()" >
+                    <!-- <div class="form-group">
                         <label> FirebaseID </label>
-                        <input type="text"
+                        <input
+                            formControlName="id" 
+                            type="text"
                             placeholder="FirebaseID"
                             [(ngModel)]="persona.id"
                             name="id"
-                            class="form-control"
+                            class="form-control is-invalid"
                             disabled="disabled">
                             <small class="form-text text-muted">Campo Autogenerado</small>
-                    </div>
+                    </div> -->
+
                     <div class="form-group">
                         <label> Nombre(s) </label>
-                        <input type="text"
+                        <input 
+                            formControlName="nombre" 
                             placeholder="Nombre(s)"
-                            [(ngModel)]="persona.Nombre"
                             name="nombre"
-                            required
                             class="form-control"
+                            required
+                            
                             >                       
                     </div>
                     <div class="form-group">
                         <label> Apellido Paterno </label>                       
-                        <input type="text"
+                        <input 
+                            formControlName="apellidoPaterno"     
                             placeholder="Apellido Paterno"
-                            [(ngModel)]="persona.apellidoPaterno"
                             name="apellidoPaterno"
-                            required
                             class="form-control"
+                            required
+                     
                             >                                           
                     </div>
                     <div class="form-group">
                         <label> Apellido Materno </label>
-                        <input type="text"
+                        <input
+                            formControlName="apellidoMaterno"  
                             placeholder="Apellido Materno"
-                            [(ngModel)]="persona.apellidoMaterno"
                             name="apellidoMaterno"
-                            required
                             class="form-control"
+                            required
+                            
                             >                       
                     </div>
 
                     <div class="form-group">
                         <label> Direccion </label>
-                        <input type="text"
+                        <input 
+                            formControlName="direccion" 
                             placeholder="Direccion"
-                            [(ngModel)]="persona.Direccion"
                             name="Direccion"
-                            required
                             class="form-control"
+                            required
+                           
                             >                       
                     </div>
                     <div class="form-group">
                         <label> Telefono </label>
-                        <input type="text"
+                        <input 
+                            formControlName="telefono" 
                             placeholder="Telefono"
-                            [(ngModel)]="persona.Telefono"
                             name="Telefono"
-                            required
                             class="form-control"
+                            required
                             >                       
                     </div>
     
                     <hr>
 
                 <div class="form-group text-center">
-                    <button class="btn btn-primary w-21" type="submit"><i class="fa fa-save">  Guardar</i></button>   
+                    <button class="btn btn-primary w-25" type="submit"><i class="fa fa-save">  Guardar</i></button>   
                 </div>
 
         </form>

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { NgForm,FormControl,FormGroup,Validators } from '@angular/forms';
+import {  FormControl,Validators,FormGroup} from '@angular/forms';
 import { ServiceService } from 'src/app/services/service.service';
 import { personaInterface } from '../../interfaces/person.interface';
 
@@ -12,49 +12,50 @@ import { personaInterface } from '../../interfaces/person.interface';
   ]
 })
 export class EditComponent implements OnInit {
-  // form:FormGroup;
   
 
-  public persona:personaInterface={
-    id:              ' ',
-    Nombre:          ' ',
-    apellidoPaterno: ' ',
-    apellidoMaterno: ' ',
-    Direccion:       ' ',
-    Telefono:        555555 
-}
+form = new FormGroup({
+    id:              new FormControl ('',[Validators.required]),
+    nombre:          new FormControl ('',[Validators.required]),
+    apellidoPaterno: new FormControl ('',[Validators.required]),
+    apellidoMaterno: new FormControl ('',[Validators.required]),
+    direccion:       new FormControl ('',[Validators.required]),
+    telefono:        new FormControl ('',[Validators.required,Validators.minLength(10),Validators.maxLength(10)])
+});
 
+  constructor(private personaService:ServiceService) { }
 
+  ngOnInit(): void {}
+  
+  onSubmit( ){
+    console.log('form',this.form.value);
 
-
-  constructor(private personaService:ServiceService) {  }
-
-  ngOnInit(): void {
-  }
-  guardar( form: NgForm ){
-    if(form.invalid){
-      console.log('formulario no valido');
-      return;
-    }
-    // console.log(form);
-    // console.log(this.persona);
-
-    if(this.persona.id){
-      this.personaService.actualizarPersona(this.persona)
-      .subscribe(resp=>{
-       console.log(resp);
-
+    if(this.form.invalid){
+      Object.values(this.form.controls).forEach(control=>{
+      control.markAsTouched();
       });
-
+      return;
+    
     }else{
-      this.personaService.crearPersona(this.persona)
+
+      let persona:personaInterface={
+            id:              this.form.value.id,
+            nombre:          this.form.value.nombre,
+            apellidoPaterno: this.form.value.apellidoPaterno,
+            apellidoMaterno: this.form.value.apellidoMaterno,
+            direccion:       this.form.value.direccion,
+            telefono:        this.form.value.telefono
+        }
+        console.log('persona',persona);
+    
+      this.personaService.crearPersona(persona)
       .subscribe(resp=>{
-      console.log(resp);
-      
+      console.log('se actualizo correctamente',resp);
       });
     }
     
 
-  }
+  } 
 
+ 
 }

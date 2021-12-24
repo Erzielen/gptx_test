@@ -15,7 +15,7 @@ export class ServiceService {
 
   constructor( private http:HttpClient) { }
   
-  //Funcion al crear una nueva persona
+  //Funcion para crear una nueva persona
   crearPersona( persona:personaInterface ){
     return this.http.post(`${ this.url }/persona.json`, persona)
     .pipe(
@@ -25,13 +25,13 @@ export class ServiceService {
         })
     );
   }
-   //Funcion al crear para editar una nueva persona
+   //Funcion para  editar una  persona
   actualizarPersona ( persona:personaInterface ){
     const personaTemp ={
       ...persona
     };
     delete personaTemp.id;
-    console.log(personaTemp);
-    return this.http.put(`${ this.url }/persona/${ persona.id }`,personaTemp);
+    console.log('Persona temporal sin ID',personaTemp);
+    return this.http.put(`${ this.url }/persona/${ persona.id }.json`,personaTemp);
   }
 }
