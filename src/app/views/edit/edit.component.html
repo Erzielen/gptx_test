@@ -1,0 +1,88 @@
+<h1>Persona <small>Nombre de Persona</small></h1>
+
+<hr>
+<div class="row text-right">
+    <div class="col">
+        <button class="btn btn-danger" routerLink="/dashboard">
+            <i class="fa fa-arrow-left">
+                Regresar
+            </i>
+        </button>
+
+    </div>
+</div>
+<!-- -----------------Formulario-------------- -->
+<div class="row animated fadeIn faster">
+    <div class="col"> 
+        <form (ngSubmit)="guardar(save)"
+        #save="ngForm">
+            <div class="form-group">
+                <label> FirebaseID </label>
+                <input type="text"
+                       placeholder="FirebaseID"
+                       [(ngModel)]="persona.id"
+                       name="id"
+                       class="form-control"
+                       disabled="disabled">
+                       <small class="form-text text-muted">Campo Autogenerado</small>
+            </div>
+            <div class="form-group">
+                <label> Nombre(s) </label>
+                <input type="text"
+                       placeholder="Nombre(s)"
+                       [(ngModel)]="persona.Nombre"
+                       name="nombre"
+                       required
+                       class="form-control"
+                       >                       
+            </div>
+            <div class="form-group">
+                <label> Apellido Paterno </label>
+                <input type="text"
+                       placeholder="Apellido Paterno"
+                       [(ngModel)]="persona.apellidoPaterno"
+                       name="apellidoPaterno"
+                       required
+                       class="form-control"
+                       >                       
+            </div>
+            <div class="form-group">
+                <label> Apellido Materno </label>
+                <input type="text"
+                       placeholder="Apellido Materno"
+                       [(ngModel)]="persona.apellidoMaterno"
+                       name="apellidoMaterno"
+                       required
+                       class="form-control"
+                       >                       
+            </div>
+            <div class="form-group">
+                <label> Direccion </label>
+                <input type="text"
+                       placeholder="Direccion"
+                       [(ngModel)]="persona.Direccion"
+                       name="Direccion"
+                       required
+                       class="form-control"
+                       >                       
+            </div>
+            <div class="form-group">
+                <label> Telefono </label>
+                <input type="text"
+                       placeholder="Telefono"
+                       [(ngModel)]="persona.Telefono"
+                       name="Telefono"
+                       required
+                       class="form-control"
+                       >                       
+            </div>
+            <hr>
+
+            <div class="form-group text-center">
+                <button class="btn btn-primary w-25" type="submit"><i class="fa fa-save">Guardar</i></button>   
+            </div>
+
+        </form>
+
+    </div>
+</div>
