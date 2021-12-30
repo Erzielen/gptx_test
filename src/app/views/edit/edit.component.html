@@ -1,4 +1,4 @@
-<h1> Hola <small>Personita</small></h1>
+<h1> Registro </h1>
 
 <hr>
 <div class="row text-right">
@@ -14,17 +14,17 @@
 <!-- -----------------Formulario-------------- -->
 <div class="row animated fadeIn faster">
     <div class="col"> 
-        <form  [formGroup]="form" (ngSubmit)="onSubmit()" >
+        <form  [formGroup]="form" (ngSubmit)="onSubmit( form )" >
+
                     <!-- <div class="form-group">
                         <label> FirebaseID </label>
                         <input
                             formControlName="id" 
                             type="text"
                             placeholder="FirebaseID"
-                            [(ngModel)]="persona.id"
                             name="id"
-                            class="form-control is-invalid"
-                            disabled="disabled">
+                            class="form-control"
+                            >
                             <small class="form-text text-muted">Campo Autogenerado</small>
                     </div> -->
 
@@ -35,10 +35,10 @@
                             placeholder="Nombre(s)"
                             name="nombre"
                             class="form-control"
-                            required
-                            
-                            >                       
+                            > 
+                            <small class="form-tex text-danger">Ingrese minimo 2 letras</small>
                     </div>
+                
                     <div class="form-group">
                         <label> Apellido Paterno </label>                       
                         <input 
@@ -46,7 +46,6 @@
                             placeholder="Apellido Paterno"
                             name="apellidoPaterno"
                             class="form-control"
-                            required
                      
                             >                                           
                     </div>
@@ -57,7 +56,6 @@
                             placeholder="Apellido Materno"
                             name="apellidoMaterno"
                             class="form-control"
-                            required
                             
                             >                       
                     </div>
@@ -69,7 +67,6 @@
                             placeholder="Direccion"
                             name="Direccion"
                             class="form-control"
-                            required
                            
                             >                       
                     </div>
@@ -80,11 +77,15 @@
                             placeholder="Telefono"
                             name="Telefono"
                             class="form-control"
-                            required
-                            >                       
+                            [class.is-invalid]="form.invalid"
+                            >
+                            <small *ngIf="form.invalid" class="form-tex text-danger">Ingrese 10 digitos</small>                       
                     </div>
     
                     <hr>
+                    <!-- <ng-container *ngIf="isConfirmed" routerLink="/dashboard">
+                    </ng-container> -->
+                    
 
                 <div class="form-group text-center">
                     <button class="btn btn-primary w-25" type="submit"><i class="fa fa-save">  Guardar</i></button>   

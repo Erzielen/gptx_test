@@ -1,3 +1,22 @@
+<!-- formControlName="search"  -->
 <h5>Buscar: </h5>
-<input type="text" class="form-control" placeholder="Buscar...">
+<div class="row">
+    <div class="col">
+        <form   (ngSubmit)="search()" autocomplete="off">
+        <input 
+        type="text" 
+        class="form-control"
+        placeholder="Buscar..." 
+        name="termino" 
+        >
+        <!-- [( ngModel )] = "termino" -->
+        
+        </form>
+    </div>
+</div>
+
 <hr>
+
+<div class="alert alert-danger">
+    <small>No se encontraron resultados</small>    
+</div>

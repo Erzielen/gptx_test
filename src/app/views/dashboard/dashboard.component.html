@@ -1,6 +1,6 @@
 <h1>Listado de personas</h1>
 <hr>
-
+<!-- <app-search></app-search> -->
 <div class="row">
     <div class="col" style="text-align: right">
 
@@ -11,7 +11,9 @@
     </div>
   </div>
 
-  <table class="table table-dark table-hover mt-3"> 
+  <table 
+        *ngIf="!cargando && personas.length > 0" 
+        class="table table-dark table-hover mt-3"> 
   
     <thead>
       <tr>
@@ -21,42 +23,43 @@
         <th scope="col">Apellido Materno</th>
         <th scope="col">Direccion</th>
         <th scope="col">Telefono</th>
-
+        <th scope="col">Tools</th>
       </tr>
     </thead>
+    
     <tbody>
-      <tr>
-        <th scope="row">1</th>
-        <td>Mark</td>
-        <td>Otto</td>
-        <td>@mdo</td>
-        <td>@mdo</td>
-        <td>@mdo</td>
+      <tr *ngFor="let persona of personas ; let i =index">
+        <th scope="row"> {{ i + 1 }} </th>
+        <td> {{persona.nombre}} </td>
+        <td> {{persona.apellidoPaterno}}  </td>
+        <td> {{persona.apellidoMaterno}} </td>
+        <td> {{persona.direccion}} </td>
+        <td> {{persona.telefono}} </td>
+        <td>
+          <button class="btn btn-info mr-2"
+          [routerLink]="['/edit', persona.id]"
+          >            
+            <i class="fa fa-pen"></i>
+          </button>
+          <button class="btn btn-danger"
+          (click)="borrarPersona(persona , i)">
+            <i class="fa fa-trash"></i>
+          </button>
+
+         </td>
       </tr>
-      <tr>
-        <th scope="row">2</th>
-        <td>Jacob</td>
-        <td>Thornton</td>
-        <td>@fat</td>
-      </tr>
-      <tr>
-        <th scope="row">3</th>
-        <td colspan="2">Larry the Bird</td>
-        <td>@twitter</td>
-      </tr>
-    </tbody>
-  
+    </tbody>  
 </table> 
-<div class="alert alert-warning text-center mt-3">
+
+<div *ngIf="!cargando && personas.length === 0"
+     class="alert alert-warning text-center mt-3">
     <h4 class="alert-heading"> No hay registro</h4>
     <p><i class="fa fa-exclamation fa-2x "></i></p>
     <p class="mb-0">Espere por favor</p>
 </div>
-<div class="alert alert-info text-center mt-3">
+<div *ngIf="cargando" 
+     class="alert alert-info text-center mt-3">
     <h4 class="alert-heading"> Cargando</h4>
     <p><i class="fa fa-sync-alt fa-spin fa-2x "></i></p>
     <p class="mb-0">Espere por favor</p>
 </div>
-
-
-  
